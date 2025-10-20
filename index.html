@@ -209,6 +209,31 @@
             background: #001a00;
         }
 
+        /* Presentation embed styles */
+        .presentation-container {
+            background: #000000;
+            border: 3px solid #00aaff;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px #00aaff, inset 0 0 10px rgba(0, 170, 255, 0.08);
+        }
+
+        .presentation-container h3 {
+            color: #00aaff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00aaff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .presentation-embed {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #00aaff;
+            box-shadow: 0 0 15px #00aaff;
+            background: #001a00;
+        }
+
         .video-container {
             background: #000000;
             border: 3px solid #ff00ff;
@@ -231,6 +256,46 @@
             border: 2px solid #ff00ff;
             box-shadow: 0 0 15px #ff00ff;
             background: #001a00;
+        }
+
+        .presentation-container {
+            background: #000000;
+            border: 3px solid #ffff00;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px #ffff00, inset 0 0 10px rgba(255, 255, 0, 0.1);
+        }
+
+        .presentation-container h3 {
+            color: #ffff00;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ffff00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .presentation-embed {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #ffff00;
+            box-shadow: 0 0 15px #ffff00;
+            background: #001a00;
+        }
+
+        .presentation-container p {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .presentation-container a {
+            color: #ffff00;
+            text-decoration: none;
+            text-shadow: 0 0 5px #ffff00;
+        }
+
+        .presentation-container a:hover {
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
         }
 
         .button-group {
@@ -358,7 +423,14 @@
 
             <div class="pdf-container">
                 <h3>📄 Assignment Document</h3>
-                <iframe class="pdf-embed" src="A1/Cisc322-A1-group 10-welcome to my hompage-essay.pdf"></iframe>
+                <iframe class="pdf-embed" src="A1/Cisc322-A1-group 10-welcome to my hompage-essay.pdf" title="A1 PDF" loading="lazy"></iframe>
+            </div>
+
+            <!-- Presentation embed (PowerPoint) -->
+            <div class="presentation-container">
+                <h3>🖥️ Presentation Slides</h3>
+                <iframe class="presentation-embed" src="https://view.officeapps.live.com/op/embed.aspx?src=https://github.com/ItsDembo/CISC-322-website/raw/main/A1/CISC%20322%20A1%20Presentation.pptx" title="A1 Presentation" loading="lazy"></iframe>
+                <p style="margin-top:8px;">Download: <a href="A1/CISC 322 A1 Presentation.pptx" download>CISC 322 A1 Presentation.pptx</a></p>
             </div>
 
             <div class="video-container">
