@@ -3,31 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 10 CISC 322</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>CISC 322 - Group 10</title>
     <style>
-        h1 {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
             text-align: center;
         }
-        h2 {
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .content-section p {
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .pdf-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .pdf-container h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .video-container h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .video-embed {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e9ecef;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
             text-align: center;
+            color: #495057;
+            border-top: 2px solid #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .tab-button {
+                min-width: 120px;
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .pdf-embed,
+            .video-embed {
+                height: auto;
+                min-height: 300px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Group 10 Assignment CISC 322</h1>
-        <h2>Group Name: Welcome to my Homapage </h2>
-        <h2>Members: Alec Nakhnikian, Ori Dembo, Tomer Lapid, Linus Li, Mathieu Chretien, Logan Bramwell</h2>
-        <p>The quick brown fox jumps over the lazy dog</p>
+        <header>
+            <h1>CISC 322 - Group 10</h1>
+            <p>Welcome to our course project hub</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('home')">Home</button>
+            <button class="tab-button" onclick="switchTab('a1')">A1</button>
+            <button class="tab-button" onclick="switchTab('about')">About</button>
+        </div>
+
+        <div id="home" class="tab-content active">
+            <div class="content-section">
+                <h2>Welcome to CISC 322</h2>
+                <p>This is the project hub for Group 10 in CISC 322. Here you'll find all our assignments, resources, and project documentation.</p>
+            </div>
+            <div class="content-section">
+                <h2>Quick Links</h2>
+                <div class="button-group">
+                    <a href="#" class="btn btn-primary" onclick="switchTab('a1'); return false;">View A1</a>
+                    <a href="https://github.com/ItsDembo/CISC-322-website" class="btn btn-secondary" target="_blank">GitHub Repository</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="a1" class="tab-content">
+            <div class="content-section">
+                <h2>Assignment 1</h2>
+                <p>Welcome to Assignment 1. Below you'll find the assignment PDF and our presentation video.</p>
+            </div>
+
+            <div class="pdf-container">
+                <h3>📄 Assignment Document</h3>
+                <iframe class="pdf-embed" src="A1/Cisc322-A1-group 10-welcome to my hompage-essay.pdf"></iframe>
+            </div>
+
+            <div class="video-container">
+                <h3>🎥 Presentation Video</h3>
+                <iframe class="video-embed" src="https://www.youtube.com/embed/xN0TvQjVk_Y" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="button-group">
+                <a href="A1/Cisc322-A1-group 10-welcome to my hompage-essay.pdf" class="btn btn-primary" download>Download PDF</a>
+                <a href="https://youtu.be/xN0TvQjVk_Y" class="btn btn-secondary" target="_blank">Watch on YouTube</a>
+            </div>
+        </div>
+
+        <div id="about" class="tab-content">
+            <div class="content-section">
+                <h2>About This Project</h2>
+                <p>This website serves as a central hub for CISC 322 Group 10's coursework and projects.</p>
+            </div>
+            <div class="content-section">
+                <h2>Course Information</h2>
+                <p>CISC 322 is a course focused on software engineering principles and practices. Our group is working on various assignments and projects throughout the semester.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 CISC 322 - Group 10. All rights reserved.</p>
+        </footer>
     </div>
-    <script src="js/script.js"></script>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
-
-
-
-
