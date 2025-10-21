@@ -43,6 +43,16 @@
             animation: scanlines 8s linear infinite;
         }
 
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         @keyframes scanlines {
             0% { transform: translateY(0); }
             100% { transform: translateY(10px); }
@@ -59,7 +69,7 @@
                 inset 0 0 20px rgba(0, 255, 0, 0.1);
             overflow: hidden;
             position: relative;
-            z-index: 2;
+            z-index: 10;
         }
 
         header {
@@ -389,6 +399,7 @@
     </style>
 </head>
 <body>
+    <canvas id="matrix-canvas"></canvas>
     <div class="container">
         <header>
             <h1>CISC 322 - Group 10</h1>
@@ -484,6 +495,70 @@
             // Add active class to clicked button
             event.target.classList.add('active');
         }
+
+        // Matrix falling letters background
+        var canvas = document.getElementById('matrix-canvas');
+        var ctx = canvas.getContext('2d');
+
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Letters for the Matrix effect
+        var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+        letters = letters.split('');
+
+        // Font size and columns
+        var fontSize = 15;
+        var columns = canvas.width / fontSize;
+
+        // Initialize drops
+        var drops = [];
+        for (var i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        // Draw function
+        function drawMatrix() {
+            // Semi-transparent black background for trail effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw letters
+            for (var i = 0; i < drops.length; i++) {
+                var text = letters[Math.floor(Math.random() * letters.length)];
+
+                // Gradient effect - brighter at top, dimmer at bottom
+                var gradient = ctx.createLinearGradient(0, drops[i] * fontSize - 50, 0, drops[i] * fontSize + 50);
+                gradient.addColorStop(0, 'rgba(0, 255, 0, 0)');
+                gradient.addColorStop(0.5, 'rgba(0, 255, 0, 1)');
+                gradient.addColorStop(1, 'rgba(0, 255, 0, 0.3)');
+
+                ctx.fillStyle = gradient;
+                ctx.font = fontSize + 'px "Courier New", monospace';
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Reset drop randomly
+                drops[i]++;
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                    drops[i] = 0;
+                }
+            }
+        }
+
+        // Animation loop
+        setInterval(drawMatrix, 33);
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = canvas.width / fontSize;
+            drops = [];
+            for (var i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+        });
     </script>
 </body>
 </html>
